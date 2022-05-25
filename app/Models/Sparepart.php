@@ -17,5 +17,11 @@ class Sparepart extends Model
 
     }
 
+    public function bahanbakus(){
+
+        return $this->belongsToMany(Bahanbaku::class, 'bahanbaku_spareparts', 'sparepart_id', 'bahanbaku_id')->withPivot('jumlah');
+
+    }
+
 
 }
