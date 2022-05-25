@@ -11,4 +11,10 @@ class Bahanbaku extends Model
 
     protected $fillable = ['nama','deskripsi','harga','min_stok'];
 
+    protected function bahanbaku_spareparts(){
+
+        return $this->hasMany(BahanbakuSparepart::class);
+        
+    }
+
 }
