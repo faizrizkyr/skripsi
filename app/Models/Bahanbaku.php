@@ -11,10 +11,16 @@ class Bahanbaku extends Model
 
     protected $fillable = ['nama','deskripsi','harga','min_stok'];
 
-    protected function bahanbaku_spareparts(){
+    // protected function bahanbaku_spareparts(){
 
-        return $this->hasMany(BahanbakuSparepart::class);
+    //     return $this->hasMany(BahanbakuSparepart::class);
         
+    // }
+
+    public function spareparts(){
+
+        return $this->belongsToMany(Sparepart::class, 'bahanbaku_spareparts', 'bahanbaku_id', 'sparepart_id')->withPivot('jumlah');
+
     }
 
 }
