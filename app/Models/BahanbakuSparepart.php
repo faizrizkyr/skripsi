@@ -9,6 +9,8 @@ class BahanbakuSparepart extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function spareparts(){
 
         return $this->belongsTo(Sparepart::class);
