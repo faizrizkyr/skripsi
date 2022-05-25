@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class BahanbakuSparepart extends Model
 {
     use HasFactory;
+
+    public function spareparts(){
+
+        return $this->belongsTo(Sparepart::class);
+
+    }
+
+    public function bahanbakus(){
+        return $this->belongsTo(Bahanbaku::class);
+    }
 }

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Sparepart extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function kategoris(){
+
+        return $this->belongsTo(Kategori::class);
+
+    }
+
+
 }
