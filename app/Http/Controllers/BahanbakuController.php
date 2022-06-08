@@ -69,9 +69,11 @@ class BahanbakuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bahanbaku $post)
     {
-        //
+        return view('dashboard.posts.bb_edit', [
+            'post' => $post
+        ]);
     }
 
     /**
