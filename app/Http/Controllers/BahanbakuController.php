@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bahanbaku;
 use Illuminate\Http\Request;
 
 class BahanbakuController extends Controller
@@ -13,7 +14,9 @@ class BahanbakuController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.posts.bb_index', [
+            'posts' => Bahanbaku::all()
+        ]);
     }
 
     /**
