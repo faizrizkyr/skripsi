@@ -26,7 +26,7 @@ class BahanbakuController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.posts.bb_create');
     }
 
     /**
@@ -37,7 +37,19 @@ class BahanbakuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                // return $request->file('image')->store('post-image');
+
+                $validatedData = $request->validate([
+                    'nama' => 'required|max:20',
+                    'deskripsi' => 'required|max:50',
+                    'harga' => 'required'
+                ]);
+        
+                // $validatedData['user_id'] = auth()->user()->id;
+        
+                Bahanbaku::create($validatedData);
+        
+                return redirect('/dashboard/bahanbaku_posts')->with('success', 'Data Bahan Baku di berhasil tambah.');
     }
 
     /**
