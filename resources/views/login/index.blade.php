@@ -26,7 +26,7 @@
 
                     <div class="form-floating">
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
-                        <label for="email">Email address</label>
+                        <label for="email">Alamat Email</label>
                         @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -40,7 +40,6 @@
 
                     <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
                 </form>
-                <small class="d-block text-center mt-3">Not Registered? <a href="/register">Register Now!</a></small>
             </main>
 
         </div>

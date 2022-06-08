@@ -18,3 +18,6 @@ Route::get('/', function () {
         'title' => 'Home'
     ]);
 });
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
