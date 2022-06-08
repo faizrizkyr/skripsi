@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BahanbakuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
@@ -27,3 +28,5 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard', function(){
     return view('dashboard.index');
 })->middleware('auth');
+
+Route::resource('/dashboard/bahanbaku_posts', BahanbakuController::class)->middleware('auth');
