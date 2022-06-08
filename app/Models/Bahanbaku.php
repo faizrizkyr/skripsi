@@ -9,7 +9,8 @@ class Bahanbaku extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama','deskripsi','harga','min_stok'];
+    // protected $fillable = ['nama','deskripsi','harga','min_stok'];
+    protected $guarded = ['id'];
 
     // protected function bahanbaku_spareparts(){
 
