@@ -8,9 +8,21 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
+          <a class="nav-link {{ Request::is('dashboard/bahanbaku_posts*') ? 'active' : '' }}" href="/dashboard/bahanbaku_posts">
             <span data-feather="file-text"></span>
-            My Posts
+            Data Bahan Baku
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('dashboard/sparepart_posts*') ? 'active' : '' }}" href="/dashboard/sparepart_posts">
+            <span data-feather="file-text"></span>
+            Data Sparepart
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('dashboard/kategori_posts*') ? 'active' : '' }}" href="/dashboard/kategori_posts">
+            <span data-feather="file-text"></span>
+            Kategori Sparepart
           </a>
         </li>
       </ul>
