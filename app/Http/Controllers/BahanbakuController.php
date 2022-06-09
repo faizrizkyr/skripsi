@@ -83,9 +83,17 @@ class BahanbakuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Bahanbaku $bahanbaku)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:20',
+            'deskripsi' => 'required|max:50',
+            'harga' => 'required'
+        ]);
+
+        Bahanbaku::where('id', $bahanbaku->id)->update($validatedData);
+
+        return redirect('/dashboard/bahanbaku')->with('success', 'Data berhasil di-update.');
     }
 
     /**
