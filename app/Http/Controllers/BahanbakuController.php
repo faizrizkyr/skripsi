@@ -14,8 +14,8 @@ class BahanbakuController extends Controller
      */
     public function index()
     {
-        return view('dashboard.posts.bb_index', [
-            'posts' => Bahanbaku::all()
+        return view('dashboard.bahanbaku.index', [
+            'bahanbakus' => Bahanbaku::all()
         ]);
     }
 
@@ -26,7 +26,7 @@ class BahanbakuController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.bb_create');
+        return view('dashboard.bahanbaku.create');
     }
 
     /**
@@ -37,19 +37,19 @@ class BahanbakuController extends Controller
      */
     public function store(Request $request)
     {
-                // return $request->file('image')->store('post-image');
+        // return $request->file('image')->store('post-image');
 
-                $validatedData = $request->validate([
-                    'nama' => 'required|max:20',
-                    'deskripsi' => 'required|max:50',
-                    'harga' => 'required'
-                ]);
-        
-                // $validatedData['user_id'] = auth()->user()->id;
-        
-                Bahanbaku::create($validatedData);
-        
-                return redirect('/dashboard/bahanbaku_posts')->with('success', 'Data Bahan Baku di berhasil tambah.');
+        $validatedData = $request->validate([
+            'nama' => 'required|max:20',
+            'deskripsi' => 'required|max:50',
+            'harga' => 'required'
+        ]);
+
+        // $validatedData['user_id'] = auth()->user()->id;
+
+        Bahanbaku::create($validatedData);
+
+        return redirect('/dashboard/bahanbaku')->with('success', 'Data Bahan Baku di berhasil tambah.');
     }
 
     /**
@@ -69,10 +69,10 @@ class BahanbakuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bahanbaku $post)
+    public function edit(Bahanbaku $bahanbaku)
     {
-        return view('dashboard.posts.bb_edit', [
-            'post' => $post
+        return view('dashboard.bahanbaku.edit', [
+            'bahanbaku' => $bahanbaku
         ]);
     }
 

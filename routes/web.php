@@ -29,4 +29,4 @@ Route::get('/dashboard', function(){
     return view('dashboard.index');
 })->middleware('auth');
 
-Route::resource('/dashboard/bahanbaku_posts', BahanbakuController::class)->middleware('auth');
+Route::resource('/dashboard/bahanbaku', BahanbakuController::class)->middleware('auth');
