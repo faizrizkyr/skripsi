@@ -37,7 +37,6 @@ class BahanbakuController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->file('image')->store('post-image');
 
         $validatedData = $request->validate([
             'nama' => 'required|max:20',
@@ -45,7 +44,6 @@ class BahanbakuController extends Controller
             'harga' => 'required'
         ]);
 
-        // $validatedData['user_id'] = auth()->user()->id;
 
         Bahanbaku::create($validatedData);
 
@@ -58,9 +56,11 @@ class BahanbakuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Bahanbaku $bahanbaku)
     {
-        //
+        return view('dashboard.bahanbaku.show', [
+            'bahanbaku' => $bahanbaku
+        ]);
     }
 
     /**
