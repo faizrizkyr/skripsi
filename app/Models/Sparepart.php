@@ -11,7 +11,7 @@ class Sparepart extends Model
 
     protected $guarded = ['id'];
 
-    public function kategoris(){
+    public function kategori(){
 
         return $this->belongsTo(Kategori::class);
 

@@ -6,12 +6,12 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/bahanbaku/{{ $bahanbaku->id }}" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/admin/sparepart/{{ $sparepart->id }}" class="mb-5" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
                 {!! Form::label('nama', 'Nama', ['class' => 'form-label']) !!}
-                {!! Form::text('nama', old('nama', $bahanbaku->nama), ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Bahan Baku', 'required', 'autofocus']) !!}
+                {!! Form::text('nama', old('nama', $sparepart->nama), ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Bahan Baku', 'required', 'autofocus']) !!}
 
                 @error('nama')
                     <div class="invalid-feedback">
@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3">
                 {!! Form::label('deskripsi', 'Deskripsi', ['class' => 'form-label']) !!}
-                {!! Form::text('deskripsi', old('deskripsi', $bahanbaku->deskripsi), ['class' => 'form-control', 'placeholder' => 'Deskripsi Bahan Baku', 'required']) !!}
+                {!! Form::text('deskripsi', old('deskripsi', $sparepart->deskripsi), ['class' => 'form-control', 'placeholder' => 'Deskripsi Bahan Baku', 'required']) !!}
 
                 @error('deskripsi')
                     <div class="invalid-feedback">
@@ -31,10 +31,10 @@
             </div>
 
             <div class="mb-3">
-                {!! Form::label('harga', 'Harga', ['class' => 'form-label']) !!}
-                {!! Form::number('harga', old('harga', $bahanbaku->harga), ['class' => 'form-control', 'placeholder' => 'Harga Bahan Baku', 'required']) !!}
+                {!! Form::label('kategori_id', 'Kategori', ['class' => 'form-label']) !!}
+                {!! Form::select('kategori_id', $kategori, old('kategori_id', $sparepart->kategori_id ?? null), ['class' => 'form-select', 'placeholder' => '- Pilih Kategori Sparepart -', 'required']) !!}
 
-                @error('harga')
+                @error('kategori')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

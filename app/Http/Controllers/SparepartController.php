@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Sparepart;
 use Illuminate\Http\Request;
 
 class SparepartController extends Controller
@@ -13,7 +15,9 @@ class SparepartController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.sparepart.index', [
+            'spareparts' => Sparepart::all()
+        ]);
     }
 
     /**
@@ -23,7 +27,9 @@ class SparepartController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.sparepart.create', [
+            'kategori' => Kategori::pluck('nama', 'id')
+        ]);
     }
 
     /**
@@ -34,7 +40,16 @@ class SparepartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:20',
+            'deskripsi' => 'required|max:50',
+            'kategori_id' => 'required'
+        ]);
+
+
+        Sparepart::create($validatedData);
+
+        return redirect('/admin/sparepart')->with('success', 'Data Bahan Baku di berhasil tambah.');
     }
 
     /**
@@ -43,9 +58,11 @@ class SparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sparepart $sparepart)
     {
-        //
+        return view('dashboard.sparepart.show', [
+            'sparepart' => $sparepart
+        ]);
     }
 
     /**
@@ -54,9 +71,12 @@ class SparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sparepart $sparepart)
     {
-        //
+        return view('dashboard.sparepart.edit', [
+            'sparepart' => $sparepart,
+            'kategori' => Kategori::pluck('nama', 'id')
+        ]);
     }
 
     /**
@@ -66,9 +86,17 @@ class SparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sparepart $sparepart)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:20',
+            'deskripsi' => 'required|max:50',
+            'kategori_id' => 'required'
+        ]);
+
+        Sparepart::where('id', $sparepart->id)->update($validatedData);
+
+        return redirect('/admin/sparepart')->with('success', 'Data berhasil di-update.');
     }
 
     /**
@@ -77,8 +105,10 @@ class SparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sparepart $sparepart)
     {
-        //
+        Sparepart::destroy($sparepart->id);
+
+        return redirect('/admin/sparepart')->with('success', 'Post has been deleted.');
     }
 }

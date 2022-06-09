@@ -2,11 +2,11 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Create New Post</h1>
+        <h1 class="h2">Tambah Data Sparepart</h1>
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/bahanbaku" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/admin/sparepart" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 {!! Form::label('nama', 'Nama', ['class' => 'form-label']) !!}
@@ -30,10 +30,10 @@
             </div>
 
             <div class="mb-3">
-                {!! Form::label('harga', 'Harga', ['class' => 'form-label']) !!}
-                {!! Form::number('harga', old('harga'), ['class' => 'form-control', 'placeholder' => 'Harga Bahan Baku', 'required']) !!}
+                {!! Form::label('kategori_id', 'Kategori', ['class' => 'form-label']) !!}
+                {!! Form::select('kategori_id', $kategori, null, ['class' => 'form-select', 'placeholder' => '- Pilih Kategori Sparepart -', 'required']) !!}
 
-                @error('harga')
+                @error('kategori')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
