@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BahanbakuController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
@@ -15,18 +16,17 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('login.index',[
-        'title' => 'Login'
-    ]);
-});
+// Route::get('/', function () {
+//     return view('login.index',[
+//         'title' => 'Login'
+//     ]);
+// });
 
 // Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/dashboard', function(){
-    return view('dashboard.index');
-})->middleware('auth');
+Route::get('/',  [DashboardController::class, 'index'])->middleware('auth');
 
 Route::resource('/dashboard/bahanbaku', BahanbakuController::class)->middleware('auth');
