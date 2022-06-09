@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BahanbakuController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SparepartController;
 
 /*
@@ -32,3 +33,4 @@ Route::get('/',  [DashboardController::class, 'index'])->middleware('auth');
 
 Route::resource('/admin/bahanbaku', BahanbakuController::class)->middleware('auth');
 Route::resource('/admin/sparepart', SparepartController::class)->middleware('auth');
+Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
