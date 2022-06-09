@@ -15,7 +15,7 @@ class SparepartController extends Controller
      */
     public function index()
     {
-        return view('dashboard.sparepart.index', [
+        return view('admin.sparepart.index', [
             'spareparts' => Sparepart::all()
         ]);
     }
@@ -27,7 +27,7 @@ class SparepartController extends Controller
      */
     public function create()
     {
-        return view('dashboard.sparepart.create', [
+        return view('admin.sparepart.create', [
             'kategori' => Kategori::pluck('nama', 'id')
         ]);
     }
@@ -60,7 +60,7 @@ class SparepartController extends Controller
      */
     public function show(Sparepart $sparepart)
     {
-        return view('dashboard.sparepart.show', [
+        return view('admin.sparepart.show', [
             'sparepart' => $sparepart
         ]);
     }
@@ -73,7 +73,7 @@ class SparepartController extends Controller
      */
     public function edit(Sparepart $sparepart)
     {
-        return view('dashboard.sparepart.edit', [
+        return view('admin.sparepart.edit', [
             'sparepart' => $sparepart,
             'kategori' => Kategori::pluck('nama', 'id')
         ]);

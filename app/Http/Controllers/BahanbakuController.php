@@ -14,7 +14,7 @@ class BahanbakuController extends Controller
      */
     public function index()
     {
-        return view('dashboard.bahanbaku.index', [
+        return view('admin.bahanbaku.index', [
             'bahanbakus' => Bahanbaku::all()
         ]);
     }
@@ -26,7 +26,7 @@ class BahanbakuController extends Controller
      */
     public function create()
     {
-        return view('dashboard.bahanbaku.create');
+        return view('admin.bahanbaku.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class BahanbakuController extends Controller
      */
     public function show(Bahanbaku $bahanbaku)
     {
-        return view('dashboard.bahanbaku.show', [
+        return view('admin.bahanbaku.show', [
             'bahanbaku' => $bahanbaku
         ]);
     }
@@ -71,7 +71,7 @@ class BahanbakuController extends Controller
      */
     public function edit(Bahanbaku $bahanbaku)
     {
-        return view('dashboard.bahanbaku.edit', [
+        return view('admin.bahanbaku.edit', [
             'bahanbaku' => $bahanbaku
         ]);
     }
