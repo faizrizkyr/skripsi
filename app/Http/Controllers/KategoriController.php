@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -13,7 +14,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.kategori.index', [
+            'kategoris' => Kategori::all()
+        ]);
     }
 
     /**
@@ -23,7 +26,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kategori.create');
     }
 
     /**
@@ -34,18 +37,15 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'nama' => 'required|max:20',
+            'keterangan' => 'required|max:50'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+
+        Kategori::create($validatedData);
+
+        return redirect('/admin/kategori')->with('success', 'Kategori baru berhasil di tambah.');
     }
 
     /**
@@ -54,9 +54,11 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kategori $kategori)
     {
-        //
+        return view('admin.kategori.edit', [
+            'kategori' => $kategori
+        ]);
     }
 
     /**
@@ -66,9 +68,16 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kategori $kategori)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:20',
+            'keterangan' => 'required|max:50'
+        ]);
+
+        Kategori::where('id', $kategori->id)->update($validatedData);
+
+        return redirect('/admin/kategori')->with('success', 'Kategori berhasil di-update.');
     }
 
     /**
@@ -77,8 +86,10 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kategori $kategori)
     {
-        //
+        Kategori::destroy($kategori->id);
+
+        return redirect('/admin/kategori')->with('success', 'Kategori telah terhapus.');
     }
 }
