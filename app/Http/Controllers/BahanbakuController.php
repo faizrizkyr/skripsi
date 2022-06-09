@@ -102,8 +102,10 @@ class BahanbakuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bahanbaku $bahanbaku)
     {
-        //
+        Bahanbaku::destroy($bahanbaku->id);
+
+        return redirect('/dashboard/bahanbaku')->with('success', 'Post has been deleted.');
     }
 }
