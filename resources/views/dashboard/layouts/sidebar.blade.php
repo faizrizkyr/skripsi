@@ -8,19 +8,19 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/bahanbaku*') ? 'active' : '' }}" href="/dashboard/bahanbaku">
+          <a class="nav-link {{ Request::is('admin/bahanbaku*') ? 'active' : '' }}" href="/admin/bahanbaku">
             <span data-feather="file-text"></span>
             Data Bahan Baku
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/sparepart*') ? 'active' : '' }}" href="/dashboard/sparepart">
+          <a class="nav-link {{ Request::is('admin/sparepart*') ? 'active' : '' }}" href="/admin/sparepart">
             <span data-feather="file-text"></span>
             Data Sparepart
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/kategori*') ? 'active' : '' }}" href="/dashboard/kategori">
+          <a class="nav-link {{ Request::is('admin/kategori*') ? 'active' : '' }}" href="/admin/kategori">
             <span data-feather="file-text"></span>
             Kategori Sparepart
           </a>

@@ -29,4 +29,5 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/',  [DashboardController::class, 'index'])->middleware('auth');
 
-Route::resource('/dashboard/bahanbaku', BahanbakuController::class)->middleware('auth');
+Route::resource('/admin/bahanbaku', BahanbakuController::class)->middleware('auth');
+Route::resource('/admin/sparepart', SparepartController::class)->middleware('auth');

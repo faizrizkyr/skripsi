@@ -12,7 +12,7 @@
     @endif
 
     <div class="table-responsive col-lg-10">
-        <a href="/dashboard/bahanbaku/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Bahan Baku Baru</a>
+        <a href="/admin/bahanbaku/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Bahan Baku Baru</a>
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -34,9 +34,9 @@
                 <td>{{ $bahanbaku->harga }}</td>
                 <td>{{ $bahanbaku->min_stok }}</td>
                 <td>
-                    <a href="/dashboard/bahanbaku/{{ $bahanbaku->id }}" class="badge bg-info"><span data-feather="eye"></span></a>
-                    <a href="/dashboard/bahanbaku/{{ $bahanbaku->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                    <form action="/dashboard/bahanbaku/{{ $bahanbaku->id }}" method="post" class="d-inline">
+                    <a href="/admin/bahanbaku/{{ $bahanbaku->id }}" class="badge bg-info"><span data-feather="eye"></span></a>
+                    <a href="/admin/bahanbaku/{{ $bahanbaku->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                    <form action="/admin/bahanbaku/{{ $bahanbaku->id }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     <button class="badge bg-danger border-0" onclick="return confirm('Hapus data bahan baku?')"><span data-feather="trash-2"></span></button>

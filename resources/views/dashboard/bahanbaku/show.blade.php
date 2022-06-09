@@ -7,10 +7,10 @@
 
                 <h1 class="mb-3 fs-3">Data Bahan Baku {{ $bahanbaku->nama }}</h1>
 
-                <a href="/dashboard/bahanbaku" class="btn btn-primary"><span data-feather="arrow-left"></span> Kembali ke Data Bahan Baku</a>
-                <a href="/dashboard/bahanbaku/{{ $bahanbaku->id }}/edit" class="btn btn-warning"><span data-feather="edit"></span>
+                <a href="/admin/bahanbaku" class="btn btn-primary"><span data-feather="arrow-left"></span> Kembali ke Data Bahan Baku</a>
+                <a href="/admin/bahanbaku/{{ $bahanbaku->id }}/edit" class="btn btn-warning"><span data-feather="edit"></span>
                     Edit Data Bahan Baku</a>
-                <form action="/dashboard/bahanbaku/{{ $bahanbaku->id }}" method="post" class="d-inline">
+                <form action="/admin/bahanbaku/{{ $bahanbaku->id }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     <button class="btn btn-danger" onclick="return confirm('Are You Sure?')"><span

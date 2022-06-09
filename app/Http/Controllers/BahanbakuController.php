@@ -47,7 +47,7 @@ class BahanbakuController extends Controller
 
         Bahanbaku::create($validatedData);
 
-        return redirect('/dashboard/bahanbaku')->with('success', 'Data Bahan Baku di berhasil tambah.');
+        return redirect('/admin/bahanbaku')->with('success', 'Data Bahan Baku di berhasil tambah.');
     }
 
     /**
@@ -93,7 +93,7 @@ class BahanbakuController extends Controller
 
         Bahanbaku::where('id', $bahanbaku->id)->update($validatedData);
 
-        return redirect('/dashboard/bahanbaku')->with('success', 'Data berhasil di-update.');
+        return redirect('/admin/bahanbaku')->with('success', 'Data berhasil di-update.');
     }
 
     /**
@@ -106,6 +106,6 @@ class BahanbakuController extends Controller
     {
         Bahanbaku::destroy($bahanbaku->id);
 
-        return redirect('/dashboard/bahanbaku')->with('success', 'Post has been deleted.');
+        return redirect('/admin/bahanbaku')->with('success', 'Post has been deleted.');
     }
 }

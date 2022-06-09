@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/bahanbaku" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/admin/bahanbaku" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 {!! Form::label('nama', 'Nama', ['class' => 'form-label']) !!}
