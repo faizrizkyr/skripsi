@@ -25,6 +25,12 @@
             Kategori Sparepart
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('admin/pemesanan*') ? 'active' : '' }}" href="/admin/pemesanan">
+            <span data-feather="file-text"></span>
+            Data Pemesanan
+          </a>
+        </li>
       </ul>
 
     </div>
