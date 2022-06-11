@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::resource('/admin/bahanbaku', BahanbakuController::class)->middleware('aut
 Route::resource('/admin/sparepart', SparepartController::class)->middleware('auth');
 Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
 Route::resource('/admin/pemesanan', PemesananController::class)->middleware('auth');
+Route::get('/admin/transaksi',  [TransaksiController::class, 'index'])->middleware('auth');
 
 Route::get('/admin/sparepart/{sparepart}/bahanbaku/create', [SparepartController::class, 'createBahanbaku']);
 Route::post('/admin/sparepart/{sparepart}/bahanbaku/', [SparepartController::class, 'storeBahanbaku']);

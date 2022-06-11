@@ -31,6 +31,12 @@
             Data Pemesanan
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('admin/transaksi*') ? 'active' : '' }}" href="/admin/transaksi">
+            <span data-feather="file-text"></span>
+            Data Transaksi
+          </a>
+        </li>
       </ul>
 
     </div>

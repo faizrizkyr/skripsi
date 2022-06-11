@@ -13,7 +13,7 @@ class Transaksi extends Model
 
     public function bahanbakus(){
 
-        return $this->belongsTo(Bahanbaku::class);
+        return $this->belongsTo(Bahanbaku::class, 'bahanbaku_id');
 
     }
 
