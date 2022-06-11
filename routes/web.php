@@ -34,3 +34,13 @@ Route::get('/',  [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('/admin/bahanbaku', BahanbakuController::class)->middleware('auth');
 Route::resource('/admin/sparepart', SparepartController::class)->middleware('auth');
 Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
+
+// /admin/sparepart/{{ $sparepart->id }}/bahanbaku/{{ $bahanbaku->id }}/edit
+// /admin/sparepart/{{ $sparepart->id }}/bahanbaku/{{ $bahanbaku->id }}
+
+
+Route::get('/admin/sparepart/{sparepart}/bahanbaku/create', [SparepartController::class, 'createBahanbaku']);
+Route::post('/admin/sparepart/{sparepart}/bahanbaku/', [SparepartController::class, 'storeBahanbaku']);
+Route::get('/admin/sparepart/{sparepart}/bahanbaku/{bahanbaku}/edit', [SparepartController::class, 'editBahanbaku']);
+Route::put('/admin/sparepart/{sparepart}/bahanbaku/{bahanbaku}/update', [SparepartController::class, 'updateBahanbaku']);
+Route::delete('/admin/sparepart/{sparepart}/bahanbaku/{bahanbaku}', [SparepartController::class, 'destroyBahanbaku']);

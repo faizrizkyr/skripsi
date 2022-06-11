@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bahanbaku;
+use App\Models\BahanbakuSparepart;
 use App\Models\Kategori;
 use App\Models\Sparepart;
 use Illuminate\Http\Request;
@@ -60,8 +62,11 @@ class SparepartController extends Controller
      */
     public function show(Sparepart $sparepart)
     {
+        $bahanbakus = $sparepart->bahanbakus;
+        // dd($bahanbakus->toArray());
         return view('admin.sparepart.show', [
-            'sparepart' => $sparepart
+            'sparepart' => $sparepart,
+            'bahanbakus' => $bahanbakus
         ]);
     }
 
@@ -110,5 +115,68 @@ class SparepartController extends Controller
         Sparepart::destroy($sparepart->id);
 
         return redirect('/admin/sparepart')->with('success', 'Post has been deleted.');
+    }
+
+    public function createBahanbaku(Request $request, Sparepart $sparepart)
+    {
+        
+        return view('admin.sparepart.bahanbaku.create', [
+            'sparepart' => $sparepart,
+            'bahanbaku' => Bahanbaku::pluck('nama', 'id')
+        ]);
+    }
+
+    public function storeBahanbaku(Request $request, Sparepart $sparepart)
+    {
+        $validatedData = $request->validate([
+            'bahanbaku_id' => 'required',
+            'jumlah' => 'required'
+        ]);
+        
+        $bahanbakusparepart = BahanbakuSparepart::create([
+            'sparepart_id' => $sparepart->id,
+            'bahanbaku_id' => $request->bahanbaku_id,
+            'jumlah' => $request->jumlah
+        ]) ;
+
+        return redirect('/admin/sparepart/' . $sparepart->id)->with('success', 'Data Bahan Baku di berhasil tambah.');
+    }
+
+    public function editBahanbaku(Request $request, Sparepart $sparepart, Bahanbaku $bahanbaku)
+    {
+        $bahanbakusparepart = BahanbakuSparepart::where('sparepart_id', $sparepart->id)->where('bahanbaku_id', $bahanbaku->id)->firstOrfail();
+
+        return view('admin.sparepart.bahanbaku.edit', [
+            'sparepart' => $sparepart,
+            'bahanbaku' => Bahanbaku::pluck('nama', 'id'),
+            'bahanbakusparepart' => $bahanbakusparepart
+        ]);
+
+
+    }
+
+    public function updateBahanbaku(Request $request, Sparepart $sparepart, Bahanbaku $bahanbaku)
+    {
+        $bahanbakusparepart = BahanbakuSparepart::where('sparepart_id', $sparepart->id)->where('bahanbaku_id', $bahanbaku->id)->firstOrfail();
+
+        $validatedData = $request->validate([
+            'bahanbaku_id' => 'required',
+            'jumlah' => 'required'
+        ]);
+
+        $bahanbakusparepart->bahanbaku_id = $request->bahanbaku_id; 
+        $bahanbakusparepart->jumlah = $request->jumlah;
+        $bahanbakusparepart->save();
+
+        return redirect('/admin/sparepart/' . $sparepart->id)->with('success', 'Data Bahan Baku berhasil di update.');
+    }
+
+    public function destroyBahanbaku(Request $request, Sparepart $sparepart, Bahanbaku $bahanbaku)
+    {
+        $bahanbakusparepart = BahanbakuSparepart::where('sparepart_id', $sparepart->id)->where('bahanbaku_id', $bahanbaku->id)->firstOrfail();
+
+        $bahanbakusparepart->delete();
+
+        return redirect('/admin/sparepart/' . $sparepart->id)->with('success', 'Data Bahan Baku berhasil di hapus.');
     }
 }

@@ -36,5 +36,33 @@
 
             </div>
         </div>
+        <div>
+            <h3>Bahan Baku Yang Dibutuhkan</h3>
+            <a href="/admin/sparepart/{{ $sparepart->id }}/bahanbaku/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Bahan Baku Sparepart Baru</a>
+            <table class="table table-bordered table-striped table-sm mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($bahanbakus as $bahanbaku)
+                        <tr>
+                            <td>{{ $bahanbaku->nama }}</td>
+                            <td>{{ $bahanbaku->pivot->jumlah }}</td>
+                            <td>                   
+                                <a href="/admin/sparepart/{{ $sparepart->id }}/bahanbaku/{{ $bahanbaku->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                                <form action="/admin/sparepart/{{ $sparepart->id }}/bahanbaku/{{ $bahanbaku->id }}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class="badge bg-danger border-0" onclick="return confirm('Hapus Bahan Baku?')"><span data-feather="trash-2"></span></button>
+                                </form></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
