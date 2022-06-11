@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BahanbakuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\SparepartController;
 
 /*
@@ -34,10 +35,7 @@ Route::get('/',  [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('/admin/bahanbaku', BahanbakuController::class)->middleware('auth');
 Route::resource('/admin/sparepart', SparepartController::class)->middleware('auth');
 Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
-
-// /admin/sparepart/{{ $sparepart->id }}/bahanbaku/{{ $bahanbaku->id }}/edit
-// /admin/sparepart/{{ $sparepart->id }}/bahanbaku/{{ $bahanbaku->id }}
-
+Route::resource('/admin/pemesanan', PemesananController::class)->middleware('auth');
 
 Route::get('/admin/sparepart/{sparepart}/bahanbaku/create', [SparepartController::class, 'createBahanbaku']);
 Route::post('/admin/sparepart/{sparepart}/bahanbaku/', [SparepartController::class, 'storeBahanbaku']);
