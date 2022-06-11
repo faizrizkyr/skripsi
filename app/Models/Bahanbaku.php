@@ -24,4 +24,9 @@ class Bahanbaku extends Model
 
     }
 
+    public function pemesanans()
+    {
+        return $this->belongsTo(Pemesanan::class);
+    }
+
 }
