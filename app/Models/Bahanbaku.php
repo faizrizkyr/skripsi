@@ -29,4 +29,10 @@ class Bahanbaku extends Model
         return $this->belongsTo(Pemesanan::class);
     }
 
+    public function transaksis(){
+
+        return $this->hasMany(Transaksi::class);
+
+    }
+
 }

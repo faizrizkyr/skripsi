@@ -16,4 +16,10 @@ class Pemesanan extends Model
         return $this->hasMany(Bahanbaku::class);
 
     }
+
+    public function transaksis(){
+
+        return $this->hasOne(Transaksi::class);
+
+    }
 }

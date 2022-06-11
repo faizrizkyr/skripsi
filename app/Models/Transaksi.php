@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Transaksi extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function bahanbakus(){
+
+        return $this->hasMany(Bahanbaku::class);
+
+    }
+
+    public function pemesanans(){
+
+        return $this->hasOne(Pemesanan::class);
+
+    }
 }
