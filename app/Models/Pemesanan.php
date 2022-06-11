@@ -13,7 +13,7 @@ class Pemesanan extends Model
 
     public function bahanbakus(){
 
-        return $this->hasMany(Bahanbaku::class);
+        return $this->belongsTo(Bahanbaku::class);
 
     }
 
