@@ -26,12 +26,12 @@ class Bahanbaku extends Model
 
     public function pemesanans()
     {
-        return $this->hasMany(Pemesanan::class);
+        return $this->hasMany(Pemesanan::class, 'bahanbaku_id');
     }
 
     public function transaksis(){
 
-        return $this->hasMany(Transaksi::class);
+        return $this->hasMany(Transaksi::class, 'bahanbaku_id');
 
     }
 

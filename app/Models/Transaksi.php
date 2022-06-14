@@ -19,7 +19,13 @@ class Transaksi extends Model
 
     public function pemesanans(){
 
-        return $this->hasOne(Pemesanan::class);
+        return $this->belongsTo(Pemesanan::class, 'pemesanan_id');
+
+    }
+
+    public function pemakaians(){
+
+        return $this->belongsTo(Pemakaian::class, 'pemakaian_id');
 
     }
 }

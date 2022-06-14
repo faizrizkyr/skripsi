@@ -23,5 +23,8 @@ class Sparepart extends Model
 
     }
 
+    public function pemakaians(){
+        return $this->hasMany(Pemakaian::class, 'sparepart_id');
+    }    
 
 }
