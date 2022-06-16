@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pemakaian;
+use App\Models\Sparepart;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class PemakaianController extends Controller
@@ -14,7 +16,9 @@ class PemakaianController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pemakaian.index', [
+            'pemakaians' => Pemakaian::all()
+        ]);
     }
 
     /**
@@ -24,7 +28,9 @@ class PemakaianController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pemakaian.create', [
+            'sparepart_id' => Sparepart::pluck('nama', 'id')
+        ]);
     }
 
     /**
@@ -35,7 +41,22 @@ class PemakaianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'tgl_pemakaian' => 'required|date',
+            'sparepart_id' => 'required',
+            'jumlah' => 'required'
+        ]);
+
+
+        $pemakaian = Pemakaian::create($validatedData);
+        $transaksipemakaian = Transaksi::create([
+            'bahanbaku_id' => $request->bahanbaku_id,
+            'jumlah' => $request->jumlah,
+            'tgl_transaksi' => $request->tgl_pemesanan,
+            'jenis_transaksi' => 'Pemakaian',
+            'pemakaian_id' => $pemakaian->id
+            
+        ]);
     }
 
     /**

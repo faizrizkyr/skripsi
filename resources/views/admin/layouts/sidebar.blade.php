@@ -32,6 +32,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link {{ Request::is('admin/pemakaian*') ? 'active' : '' }}" href="/admin/pemakaian">
+            <span data-feather="file-text"></span>
+            Data Pemakaian
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link {{ Request::is('admin/transaksi*') ? 'active' : '' }}" href="/admin/transaksi">
             <span data-feather="file-text"></span>
             Data Transaksi
