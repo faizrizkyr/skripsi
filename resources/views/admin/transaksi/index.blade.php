@@ -21,6 +21,7 @@
               <th scope="col">Bahan Baku</th>
               <th scope="col">Jumlah</th>
               <th scope="col">ID. Pemesanan</th>
+              <th scope="col">ID. Pemakaian</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +33,7 @@
                 <td>{{ $transaksi->bahanbakus->nama ?? '-' }}</td>
                 <td>{{ $transaksi->jumlah }}</td>
                 <td>{{ $transaksi->pemesanan_id }}</td>
+                <td>{{ $transaksi->pemakaian_id }}</td>
 
               </tr>
                   

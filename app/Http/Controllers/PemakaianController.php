@@ -46,17 +46,23 @@ class PemakaianController extends Controller
             'sparepart_id' => 'required',
             'jumlah' => 'required'
         ]);
-
-
+        
         $pemakaian = Pemakaian::create($validatedData);
-        $transaksipemakaian = Transaksi::create([
-            'bahanbaku_id' => $request->bahanbaku_id,
-            'jumlah' => $request->jumlah,
-            'tgl_transaksi' => $request->tgl_pemesanan,
-            'jenis_transaksi' => 'Pemakaian',
-            'pemakaian_id' => $pemakaian->id
-            
-        ]);
+        $sparepart = Sparepart::find($request->sparepart_id);
+        foreach ($sparepart->bahanbakus as $bahanbaku) {
+            $transaksipemakaian = Transaksi::create([
+                'bahanbaku_id' => $bahanbaku->id,
+                'jumlah' => $request->jumlah*$bahanbaku->pivot->jumlah,
+                'tgl_transaksi' => $request->tgl_pemakaian,
+                'jenis_transaksi' => 'Pemakaian',
+                'pemakaian_id' => $pemakaian->id
+                
+            ]);
+        }
+
+        return redirect('/admin/pemakaian')->with('success', 'Data Pemakaian Bahan Baku di berhasil tambah.');
+
+        
     }
 
     /**
@@ -78,7 +84,10 @@ class PemakaianController extends Controller
      */
     public function edit(Pemakaian $pemakaian)
     {
-        //
+        return view('admin.pemakaian.edit', [
+            'pemakaian' => $pemakaian,
+            'sparepart_id' => Sparepart::pluck('nama', 'id')
+        ]);
     }
 
     /**
@@ -90,7 +99,32 @@ class PemakaianController extends Controller
      */
     public function update(Request $request, Pemakaian $pemakaian)
     {
-        //
+        $validatedData = $request->validate([
+            'tgl_pemakaian' => 'required|date',
+            'sparepart_id' => 'required',
+            'jumlah' => 'required'
+        ]);
+        
+        Pemakaian::where('id', $pemakaian->id)->update($validatedData);
+        
+        $transaksipemakaian = Transaksi::where('pemakaian_id', $pemakaian->id)->get();
+        foreach ($transaksipemakaian as $transaksi) {
+            $transaksi->delete();
+        }
+        
+        $sparepart = Sparepart::find($request->sparepart_id);
+        foreach ($sparepart->bahanbakus as $bahanbaku) {
+            $transaksipemakaian = Transaksi::create([
+                'bahanbaku_id' => $bahanbaku->id,
+                'jumlah' => $request->jumlah*$bahanbaku->pivot->jumlah,
+                'tgl_transaksi' => $request->tgl_pemakaian,
+                'jenis_transaksi' => 'Pemakaian',
+                'pemakaian_id' => $pemakaian->id
+                
+            ]);
+        }
+        return redirect('/admin/pemakaian')->with('success', 'Data Pemakaian Bahan Baku di berhasil tambah.');
+
     }
 
     /**
@@ -101,6 +135,8 @@ class PemakaianController extends Controller
      */
     public function destroy(Pemakaian $pemakaian)
     {
-        //
+        Pemakaian::destroy($pemakaian->id);
+
+        return redirect('/admin/pemakaian')->with('success', 'Data pemakaian sparepart berhasil di hapus.');
     }
 }
