@@ -9,31 +9,31 @@
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Request::is('admin/bahanbaku*') ? 'active' : '' }}" href="/admin/bahanbaku">
-            <span data-feather="file-text"></span>
+            <span data-feather="database"></span>
             Data Bahan Baku
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Request::is('admin/sparepart*') ? 'active' : '' }}" href="/admin/sparepart">
-            <span data-feather="file-text"></span>
+            <span data-feather="tool"></span>
             Data Sparepart
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Request::is('admin/kategori*') ? 'active' : '' }}" href="/admin/kategori">
-            <span data-feather="file-text"></span>
+            <span data-feather="layers"></span>
             Kategori Sparepart
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Request::is('admin/pemesanan*') ? 'active' : '' }}" href="/admin/pemesanan">
-            <span data-feather="file-text"></span>
+            <span data-feather="chevrons-left"></span>
             Data Pemesanan
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Request::is('admin/pemakaian*') ? 'active' : '' }}" href="/admin/pemakaian">
-            <span data-feather="file-text"></span>
+            <span data-feather="chevrons-right"></span>
             Data Pemakaian
           </a>
         </li>
