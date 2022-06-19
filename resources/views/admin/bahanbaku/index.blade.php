@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <div class="table-responsive col-lg-10">
+    <div class="table-responsive ">
         <a href="/admin/bahanbaku/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Bahan Baku Baru</a>
         <table class="table table-striped table-sm">
           <thead>
@@ -19,7 +19,7 @@
               <th scope="col">No.</th>
               <th scope="col">Nama</th>
               <th scope="col">Deskripsi</th>
-              <th scope="col">Harga per unit</th>
+              <th scope="col">Harga satuan</th>
               <th scope="col">Stok</th>
               <th scope="col">Stok Minimal</th>
               <th scope="col">Action</th>

@@ -22,7 +22,7 @@
                         <tr>
                             <th scope="col">Nama</th>
                             <th scope="col">Deskripsi</th>
-                            <th scope="col">Harga per unit</th>
+                            <th scope="col">Harga satuan</th>
                             <th scope="col">Stok</th>
                             <th scope="col">Stok Minimal</th>
                         </tr>
