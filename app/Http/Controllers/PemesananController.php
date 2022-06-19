@@ -58,6 +58,10 @@ class PemesananController extends Controller
             
         ]);
 
+        $bahanbaku = Bahanbaku::where('id', $request->bahanbaku_id)->firstOrfail();
+        $bahanbaku->stok = $bahanbaku->stok+$request->jumlah;
+        $bahanbaku->save();
+
         return redirect('/admin/pemesanan')->with('success', 'Data Pemesanan Bahan Baku di berhasil tambah.');
     }
 
@@ -103,6 +107,10 @@ class PemesananController extends Controller
             'jumlah' => 'required'
         ]);
 
+        $bahanbaku = Bahanbaku::where('id', $request->bahanbaku_id)->firstOrfail();
+        $bahanbaku->stok = $bahanbaku->stok - $pemesanan->jumlah;
+        $bahanbaku->save();
+
         Pemesanan::where('id', $pemesanan->id)->update($validatedData);
 
         $transaksipemesanan = Transaksi::where('pemesanan_id', $pemesanan->id)->firstOrfail();
@@ -111,6 +119,9 @@ class PemesananController extends Controller
         $transaksipemesanan->bahanbaku_id = $request->bahanbaku_id; 
         $transaksipemesanan->jumlah = $request->jumlah;
         $transaksipemesanan->save();
+
+        $bahanbaku->stok = $bahanbaku->stok + $request->jumlah;
+        $bahanbaku->save();
 
         return redirect('/admin/pemesanan')->with('success', 'Data berhasil di-update.');
     }
@@ -123,6 +134,10 @@ class PemesananController extends Controller
      */
     public function destroy(Pemesanan $pemesanan)
     {
+        $bahanbaku = Bahanbaku::where('id', $pemesanan->bahanbaku_id)->firstOrfail();
+        $bahanbaku->stok = $bahanbaku->stok - $pemesanan->jumlah;
+        $bahanbaku->save();
+
         Pemesanan::destroy($pemesanan->id);
 
         return redirect('/admin/pemesanan')->with('success', 'Data pemesanan berhasil di hapus.');
