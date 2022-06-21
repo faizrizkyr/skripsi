@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bahanbaku;
 use App\Models\Pemakaian;
 use App\Models\Sparepart;
 use App\Models\Transaksi;
@@ -58,6 +59,10 @@ class PemakaianController extends Controller
                 'pemakaian_id' => $pemakaian->id
                 
             ]);
+
+            $bb = Bahanbaku::where('id', $transaksipemakaian->bahanbaku_id)->first();
+            $bb->stok = $bb->stok - $transaksipemakaian->jumlah;
+            $bb->save();
         }
 
         return redirect('/admin/pemakaian')->with('success', 'Data Pemakaian Bahan Baku di berhasil tambah.');
@@ -106,10 +111,14 @@ class PemakaianController extends Controller
         ]);
         
         Pemakaian::where('id', $pemakaian->id)->update($validatedData);
-        
-        $transaksipemakaian = Transaksi::where('pemakaian_id', $pemakaian->id)->get();
-        foreach ($transaksipemakaian as $transaksi) {
-            $transaksi->delete();
+
+        $dataTransaksi = Transaksi::where('pemakaian_id', $pemakaian->id)->get(); // get data transaksi berdasarakan ID pemakaian
+
+        foreach ($dataTransaksi as $transaksi) {
+            $dataBahanBaku = Bahanbaku::where('id', $transaksi->bahanbaku_id)->first(); // get data setiap bahanbaku
+            $dataBahanBaku->stok = $dataBahanBaku->stok +  $transaksi->jumlah;
+            $dataBahanBaku->save();
+            Transaksi::destroy($transaksi->id);
         }
         
         $sparepart = Sparepart::find($request->sparepart_id);
@@ -120,9 +129,13 @@ class PemakaianController extends Controller
                 'tgl_transaksi' => $request->tgl_pemakaian,
                 'jenis_transaksi' => 'Pemakaian',
                 'pemakaian_id' => $pemakaian->id
-                
             ]);
+
+            $bb = Bahanbaku::where('id', $transaksipemakaian->bahanbaku_id)->first();
+            $bb->stok = $bb->stok - $transaksipemakaian->jumlah;
+            $bb->save();
         }
+
         return redirect('/admin/pemakaian')->with('success', 'Data Pemakaian Bahan Baku di berhasil tambah.');
 
     }
@@ -133,9 +146,17 @@ class PemakaianController extends Controller
      * @param  \App\Models\Pemakaian  $pemakaian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pemakaian $pemakaian)
+    public function destroy($id)
     {
-        Pemakaian::destroy($pemakaian->id);
+        $dataTransaksi = Transaksi::where('pemakaian_id', $id)->get(); // get data transaksi berdasarakan ID pemakaian
+
+        foreach ($dataTransaksi as $transaksi) {
+            $dataBahanBaku = Bahanbaku::where('id', $transaksi->bahanbaku_id)->first(); // get data setiap bahanbaku
+            $dataBahanBaku->stok = $dataBahanBaku->stok +  $transaksi->jumlah;
+            $dataBahanBaku->save();
+        }
+
+        Pemakaian::destroy($id);
 
         return redirect('/admin/pemakaian')->with('success', 'Data pemakaian sparepart berhasil di hapus.');
     }
