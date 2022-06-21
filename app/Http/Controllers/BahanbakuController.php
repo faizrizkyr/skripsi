@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bahanbaku;
+use App\Models\Pemakaian;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class BahanbakuController extends Controller
@@ -107,5 +109,31 @@ class BahanbakuController extends Controller
         Bahanbaku::destroy($bahanbaku->id);
 
         return redirect('/admin/bahanbaku')->with('success', 'Post has been deleted.');
+    }
+
+    public function holding_cost($id)
+    {
+        $hc = 0.15;
+        $bahanbaku = Bahanbaku::findOrFail($id);
+        $biayapenyimpanan = $hc * $bahanbaku->harga;
+
+        return response()->json([
+            'status' => true,
+            'data' => $biayapenyimpanan,
+            'message' => 'Berhasil mengambil data'
+        ]);
+        // dd($biayapenyimpanan);
+    }
+
+    public function jumlah_kebutuhan(request $request, $id)
+    {
+        $tahun = $request->tahun - 1;
+        $pemakaian = Transaksi::where('bahanbaku_id', $id)->where('jenis_transaksi', 'Pemakaian')->whereYear('tgl_transaksi', $tahun)->get();
+        
+        return response()->json([
+            'status' => true,
+            'data' => $pemakaian->sum('jumlah'),
+            'message' => 'Berhasil mengambil data'
+        ]);
     }
 }
