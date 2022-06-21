@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BahanbakuController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EoqController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PemakaianController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\TransaksiController;
+use App\Models\Bahanbaku;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +41,10 @@ Route::resource('/admin/sparepart', SparepartController::class)->middleware('aut
 Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
 Route::resource('/admin/pemesanan', PemesananController::class)->middleware('auth');
 Route::resource('/admin/pemakaian', PemakaianController::class)->middleware('auth');
+Route::resource('/admin/eoq', EoqController::class)->middleware('auth');
 Route::get('/admin/transaksi',  [TransaksiController::class, 'index'])->middleware('auth');
+Route::get('/admin/bahanbaku/{bahanbaku}/holding-cost',[BahanbakuController::class, 'holding_cost'])->middleware('auth');
+Route::get('/admin/bahanbaku/{bahanbaku}/jumlah-kebutuhan',[BahanbakuController::class, 'jumlah_kebutuhan'])->middleware('auth');
 
 Route::get('/admin/sparepart/{sparepart}/bahanbaku/create', [SparepartController::class, 'createBahanbaku']);
 Route::post('/admin/sparepart/{sparepart}/bahanbaku/', [SparepartController::class, 'storeBahanbaku']);
