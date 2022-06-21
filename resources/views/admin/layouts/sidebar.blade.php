@@ -43,6 +43,12 @@
             Data Transaksi
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('admin/eoq*') ? 'active' : '' }}" href="/admin/eoq">
+            <span data-feather="file-text"></span>
+            Perhitungan EOQ
+          </a>
+        </li>
       </ul>
 
     </div>
