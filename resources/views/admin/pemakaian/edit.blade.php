@@ -13,6 +13,8 @@
                 <label for="tgl_pemakaian" class="form-label">Tanggal pemakaian</label>
                 <input type="date" class="form-control" name="tgl_pemakaian" id="tgl_pemakaian" required
                     value="{{ old('tgl_pemakaian', $pemakaian->tgl_pemakaian) }}">
+                {{-- <input type="hidden" class="form-control" name="sparepart_id_old" id="sparepart_id_old" required
+                    value="{{ old('sparepart_id', $pemakaian->sparepart_id) }}"> --}}
                 @error('tgl_pemakaian')
                     <div class="invalid-feedback">
                         {{ $message }}
