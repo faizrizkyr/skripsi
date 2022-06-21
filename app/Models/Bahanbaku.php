@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Eoq;
+use App\Models\Pemesanan;
+use App\Models\Sparepart;
+use App\Models\Transaksi;
+use App\Models\BahanbakuSparepart;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bahanbaku extends Model
 {
@@ -33,6 +38,11 @@ class Bahanbaku extends Model
 
         return $this->hasMany(Transaksi::class, 'bahanbaku_id');
 
+    }
+
+    public function eoqs()
+    {
+        return $this->hasOne(Eoq::class, 'bahanbaku_id');
     }
 
 }
