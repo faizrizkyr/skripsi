@@ -40,5 +40,68 @@
 
             </div>
         </div>
+        @if ($eoq != null)
+            
+        <div class="row my-3">
+            <h3>Perhitungan EOQ {{ $bahanbaku->nama }}</h3>
+            <div class="col-lg-8">
+                        <table class="table table-bordered table-striped table-sm mt-3">
+                    <tbody>
+                        <tr>
+                            <td>Tahun</td>
+                            <td>{{ $eoq->tahun }}</td>
+                        </tr>
+                        <tr>
+                            <td>Biaya Penyimpanan</td>
+                            <td>Rp {{ $eoq->holding_cost }}</td>
+                        </tr>
+                        <tr>
+                            <td>Biaya Pemesanan</td>
+                            <td>Rp {{ $eoq->biaya_order }}</td>
+                        </tr>
+                        <tr>
+                            <td>Jumlah kebutuhan selama 1 periode</td>
+                            <td>{{ $eoq->jml_kebutuhan }} unit</td>
+                        </tr>
+                        <tr>
+                            <td>Jumlah pemesanan optimal (EOQ)</td>
+                            <td>{{ $eoq->eoq }} unit</td>
+                        </tr>
+                        <tr>
+                            <td>Frekuensi pemesanan selama 1 periode</td>
+                            <td>{{ $eoq->frekuensi_order }} kali</td>
+                        </tr>
+                        <tr>
+                            <td>Interval Pemesanan</td>
+                            <td>{{ $eoq->interval_order }} hari</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-lg-4">
+                Jadwal Pemesanan Berdasarkan Interval Pemesanan
+                <div class="table-responsive" style="max-height: 400px;min-width: 300px; overflow:auto; display:inline-block;">
+                <table class="table table-bordered table-striped table-sm mt-3 text-center">
+                    <thead>
+                        <tr>
+                            <td>No.</td>
+                            <td>Jadwal Pemesanan</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($tgl_interval as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        @endif
+
     </div>
 @endsection
