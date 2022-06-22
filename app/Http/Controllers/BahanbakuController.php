@@ -60,8 +60,22 @@ class BahanbakuController extends Controller
      */
     public function show(Bahanbaku $bahanbaku)
     {
+        $eoq = $bahanbaku->eoq;
+        $tgl_interval = [];
+        if ($eoq != null) {
+            $tgl_awal = date('d F Y', strtotime("$eoq->tahun-1-1") );
+            $tgl_interval[0] = $tgl_awal;
+    
+            for ($i=1; $i < $eoq->frekuensi_order; $i++) { 
+                $tgl_awal = date('d F Y', strtotime($tgl_awal . " +$eoq->interval_order days"));
+                
+                $tgl_interval[$i]=$tgl_awal;
+            }
+        }
         return view('admin.bahanbaku.show', [
-            'bahanbaku' => $bahanbaku
+            'bahanbaku' => $bahanbaku,
+            'eoq' => $eoq,
+            'tgl_interval' => $tgl_interval
         ]);
     }
 
