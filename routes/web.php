@@ -41,6 +41,7 @@ Route::resource('/admin/sparepart', SparepartController::class)->middleware('aut
 Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
 Route::resource('/admin/pemesanan', PemesananController::class)->middleware('auth');
 Route::resource('/admin/pemakaian', PemakaianController::class)->middleware('auth');
+Route::post('/admin/eoq/hitung', [EoqController::class, 'hitung']   )->middleware('auth');
 Route::resource('/admin/eoq', EoqController::class)->middleware('auth');
 Route::get('/admin/transaksi',  [TransaksiController::class, 'index'])->middleware('auth');
 Route::get('/admin/bahanbaku/{bahanbaku}/holding-cost',[BahanbakuController::class, 'holding_cost'])->middleware('auth');
