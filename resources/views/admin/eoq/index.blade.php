@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/admin/eoq" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/admin/eoq/hitung" class="mb-5" enctype="multipart/form-data">
             
             @csrf
 
