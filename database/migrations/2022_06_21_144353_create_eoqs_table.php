@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('jml_kebutuhan');
             $table->integer('biaya_order');
             $table->float('eoq');
-            $table->float('frekuesi_order');
+            $table->float('frekuensi_order');
             $table->float('interval_order');
             $table->timestamps();
             $table->foreign('bahanbaku_id')->references('id')->on('bahanbakus')->onDelete('cascade');
