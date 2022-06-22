@@ -40,9 +40,9 @@ class Bahanbaku extends Model
 
     }
 
-    public function eoqs()
+    public function eoq()
     {
-        return $this->hasOne(Eoq::class, 'bahanbaku_id');
+        return $this->hasOne(Eoq::class, 'bahanbaku_id')->orderBy('tahun', 'desc');
     }
 
 }
