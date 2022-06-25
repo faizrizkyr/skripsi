@@ -9,7 +9,7 @@ class TransaksiController extends Controller
 {
     public function index(){
         return view('admin.transaksi.index', [
-            'transaksis' => Transaksi::all()
+            'transaksis' => Transaksi::orderBy('tgl_transaksi', 'desc')->get()
         ]);
     }
 }
