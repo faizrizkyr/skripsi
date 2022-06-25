@@ -13,7 +13,7 @@
 
     <div class="table-responsive col-lg-10">
         <a href="/admin/sparepart/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Bahan Baku Baru</a>
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm dataTable">
           <thead>
             <tr>
               <th scope="col">No.</th>
