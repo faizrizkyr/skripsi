@@ -30,7 +30,7 @@ class PemakaianController extends Controller
     public function create()
     {
         return view('admin.pemakaian.create', [
-            'sparepart_id' => Sparepart::pluck('nama', 'id')
+            'sparepart_id' => Sparepart::dropdownWithKategori()
         ]);
     }
 
@@ -47,9 +47,16 @@ class PemakaianController extends Controller
             'sparepart_id' => 'required',
             'jumlah' => 'required'
         ]);
+
+        $sparepart = Sparepart::find($request->sparepart_id);
+foreach ($sparepart->bahanbakus as $bahanbaku) {
+    if ($bahanbaku->stok < $request->jumlah*$bahanbaku->pivot->jumlah) {
+        return redirect('/admin/pemakaian/create')->with('failed', "Jumlah Stok $bahanbaku->nama kurang/sedikit. Tinggal $bahanbaku->stok");
+
+    }
+}
         
         $pemakaian = Pemakaian::create($validatedData);
-        $sparepart = Sparepart::find($request->sparepart_id);
         foreach ($sparepart->bahanbakus as $bahanbaku) {
             $transaksipemakaian = Transaksi::create([
                 'bahanbaku_id' => $bahanbaku->id,
