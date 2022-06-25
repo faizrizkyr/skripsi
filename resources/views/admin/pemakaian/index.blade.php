@@ -27,7 +27,7 @@
               @foreach ($pemakaians as $pemakaian)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $pemakaian->spareparts->nama ?? '-' }}</td>
+                <td>{{ $pemakaian->spareparts->kategori->nama }} - {{ $pemakaian->spareparts->nama ?? '-' }}</td>
                 <td>{{ $pemakaian->jumlah }}</td>
                 <td>{{ $pemakaian->tgl_pemakaian }}</td>
                 <td>
