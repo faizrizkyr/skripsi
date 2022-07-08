@@ -12,7 +12,7 @@
 
             <div class="mb-3">
                 {!! Form::label('tahun', 'Tahun', ['class' => 'form-label']) !!}
-                {!! Form::number('tahun', old('tahun'), ['class' => 'form-control', 'placeholder' => 'Masukkan Tahun', 'required']) !!}
+                {!! Form::number('tahun', old('tahun'), ['class' => 'form-control', 'placeholder' => 'Masukkan Tahun untuk perhitungan EOQ', 'required']) !!}
 
                 @error('tahun')
                     <div class="invalid-feedback">
@@ -45,7 +45,7 @@
 
 
             
-            <button type="button" class="btn btn-primary mt-3" id="btnHitungJumlahKebutuhan"><span data-feather="edit"></span> Hitung Jumlah Rekomendasi Kebutuhan</button>
+            <button type="button" class="btn btn-primary mt-3" id="btnHitungJumlahKebutuhan"><span data-feather="edit"></span> Hitung Jumlah Rekomendasi Kebutuhan</button><span> * rekomendasi berdasarkan data tahun sebelumnya</span>
 
             <div class="mb-3">
                 {!! Form::label('jml_kebutuhan', 'Jumlah Kebutuhan', ['class' => 'form-label']) !!}
