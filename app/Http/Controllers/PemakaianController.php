@@ -49,22 +49,21 @@ class PemakaianController extends Controller
         ]);
 
         $sparepart = Sparepart::find($request->sparepart_id);
-foreach ($sparepart->bahanbakus as $bahanbaku) {
-    if ($bahanbaku->stok < $request->jumlah*$bahanbaku->pivot->jumlah) {
-        return redirect('/admin/pemakaian/create')->with('failed', "Jumlah Stok $bahanbaku->nama kurang/sedikit. Tinggal $bahanbaku->stok");
+        foreach ($sparepart->bahanbakus as $bahanbaku) {
+            if ($bahanbaku->stok < $request->jumlah * $bahanbaku->pivot->jumlah) {
+                return redirect('/admin/pemakaian/create')->with('failed', "Jumlah Stok $bahanbaku->nama kurang/sedikit. Tinggal $bahanbaku->stok");
+            }
+        }
 
-    }
-}
-        
         $pemakaian = Pemakaian::create($validatedData);
         foreach ($sparepart->bahanbakus as $bahanbaku) {
             $transaksipemakaian = Transaksi::create([
                 'bahanbaku_id' => $bahanbaku->id,
-                'jumlah' => $request->jumlah*$bahanbaku->pivot->jumlah,
+                'jumlah' => $request->jumlah * $bahanbaku->pivot->jumlah,
                 'tgl_transaksi' => $request->tgl_pemakaian,
                 'jenis_transaksi' => 'Pemakaian',
                 'pemakaian_id' => $pemakaian->id
-                
+
             ]);
 
             $bb = Bahanbaku::where('id', $transaksipemakaian->bahanbaku_id)->first();
@@ -73,8 +72,6 @@ foreach ($sparepart->bahanbakus as $bahanbaku) {
         }
 
         return redirect('/admin/pemakaian')->with('success', 'Data Pemakaian Bahan Baku di berhasil tambah.');
-
-        
     }
 
     /**
@@ -116,7 +113,7 @@ foreach ($sparepart->bahanbakus as $bahanbaku) {
             'sparepart_id' => 'required',
             'jumlah' => 'required'
         ]);
-        
+
         Pemakaian::where('id', $pemakaian->id)->update($validatedData);
 
         $dataTransaksi = Transaksi::where('pemakaian_id', $pemakaian->id)->get(); // get data transaksi berdasarakan ID pemakaian
@@ -127,12 +124,12 @@ foreach ($sparepart->bahanbakus as $bahanbaku) {
             $dataBahanBaku->save();
             Transaksi::destroy($transaksi->id);
         }
-        
+
         $sparepart = Sparepart::find($request->sparepart_id);
         foreach ($sparepart->bahanbakus as $bahanbaku) {
             $transaksipemakaian = Transaksi::create([
                 'bahanbaku_id' => $bahanbaku->id,
-                'jumlah' => $request->jumlah*$bahanbaku->pivot->jumlah,
+                'jumlah' => $request->jumlah * $bahanbaku->pivot->jumlah,
                 'tgl_transaksi' => $request->tgl_pemakaian,
                 'jenis_transaksi' => 'Pemakaian',
                 'pemakaian_id' => $pemakaian->id
@@ -144,7 +141,6 @@ foreach ($sparepart->bahanbakus as $bahanbaku) {
         }
 
         return redirect('/admin/pemakaian')->with('success', 'Data Pemakaian Bahan Baku di berhasil tambah.');
-
     }
 
     /**
