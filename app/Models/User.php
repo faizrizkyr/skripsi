@@ -43,4 +43,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function dropdownRole()
+    {
+        return [
+            'superadmin' => 'Superadmin',
+            'manager' => 'Manager',
+            'admin' => 'Admin',
+            'pegawai' => 'Pegawai',
+        ];
+    }
+
+    public function setPasswordAttribute($value) {
+        $this->attributes['password'] = \Hash::make($value);
+    }
 }

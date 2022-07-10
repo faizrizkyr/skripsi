@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BahanbakuController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EoqController;
 use App\Http\Controllers\KategoriController;
@@ -41,8 +42,12 @@ Route::resource('/admin/sparepart', SparepartController::class)->middleware('aut
 Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
 Route::resource('/admin/pemesanan', PemesananController::class)->middleware('auth');
 Route::resource('/admin/pemakaian', PemakaianController::class)->middleware('auth');
-Route::post('/admin/eoq/hitung', [EoqController::class, 'hitung']   )->middleware('auth');
+Route::resource('/admin/user', UserController::class)->middleware('auth');
+
 Route::resource('/admin/eoq', EoqController::class)->middleware('auth');
+
+Route::post('/admin/eoq/hitung', [EoqController::class, 'hitung']   )->middleware('auth');
+
 Route::get('/admin/transaksi',  [TransaksiController::class, 'index'])->middleware('auth');
 Route::get('/admin/bahanbaku/{bahanbaku}/holding-cost',[BahanbakuController::class, 'holding_cost'])->middleware('auth');
 Route::get('/admin/bahanbaku/{bahanbaku}/jumlah-kebutuhan',[BahanbakuController::class, 'jumlah_kebutuhan'])->middleware('auth');

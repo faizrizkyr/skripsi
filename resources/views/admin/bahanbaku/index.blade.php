@@ -12,8 +12,11 @@
     @endif
 
     <div class="table-responsive ">
+
+        @if(auth()->user()->role == 'superadmin')
         <a href="/admin/bahanbaku/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Bahan
             Baku Baru</a>
+        @endif
         <table class="table table-striped table-sm dataTable">
             <thead>
                 <tr>
@@ -38,6 +41,7 @@
                         <td>
                             <a href="/admin/bahanbaku/{{ $bahanbaku->id }}" class="badge bg-info"><span
                                     data-feather="eye"></span></a>
+                            @if(auth()->user()->role == 'superadmin')
                             <a href="/admin/bahanbaku/{{ $bahanbaku->id }}/edit" class="badge bg-warning"><span
                                     data-feather="edit"></span></a>
                             <form action="/admin/bahanbaku/{{ $bahanbaku->id }}" method="post" class="d-inline">
@@ -47,6 +51,7 @@
                                     onclick="return confirm('Hapus data bahan baku?')"><span
                                         data-feather="trash-2"></span></button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

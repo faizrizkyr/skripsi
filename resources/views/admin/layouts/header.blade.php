@@ -5,10 +5,12 @@
     </button>
     {{-- <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search"> --}}
     <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
+      <div class="nav-item">
         <form action="/logout" method="post">
           @csrf
-          <button type="submit" class="nav-link px-3 bg-dark border-0">Logout <span data-feather="log-out"></span></button>
+          <button type="submit" class="nav-link px-3 bg-dark border-0">
+            {{auth()->user()->name}} <span data-feather="log-out"></span>
+          </button>
         </form>
       </div>
     </div>

@@ -12,7 +12,9 @@
     @endif
 
     <div class="table-responsive col-lg-10">
+        @if(auth()->user()->role == 'superadmin' || auth()->user()->role == 'admin')
         <a href="/admin/pemesanan/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Bahan Baku Baru</a>
+        @endif
         <table class="table table-striped table-sm dataTable">
           <thead>
             <tr>
