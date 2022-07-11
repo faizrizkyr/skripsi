@@ -63,13 +63,13 @@ class BahanbakuController extends Controller
         $eoq = $bahanbaku->eoq;
         $tgl_interval = [];
         if ($eoq != null) {
-            $tgl_awal = date('d F Y', strtotime("$eoq->tahun-1-1") );
+            $tgl_awal = date('d F Y', strtotime("$eoq->tahun-1-1"));
             $tgl_interval[0] = $tgl_awal;
-    
-            for ($i=1; $i < $eoq->frekuensi_order; $i++) { 
+
+            for ($i = 1; $i < $eoq->frekuensi_order; $i++) {
                 $tgl_awal = date('d F Y', strtotime($tgl_awal . " +$eoq->interval_order days"));
-                
-                $tgl_interval[$i]=$tgl_awal;
+
+                $tgl_interval[$i] = $tgl_awal;
             }
         }
         return view('admin.bahanbaku.show', [
@@ -122,7 +122,7 @@ class BahanbakuController extends Controller
     {
         Bahanbaku::destroy($bahanbaku->id);
 
-        return redirect('/admin/bahanbaku')->with('success', 'Post has been deleted.');
+        return redirect('/admin/bahanbaku')->with('success', 'Bahan Baku has been deleted.');
     }
 
     public function holding_cost($id)
@@ -143,7 +143,7 @@ class BahanbakuController extends Controller
     {
         $tahun = $request->tahun - 1;
         $pemakaian = Transaksi::where('bahanbaku_id', $id)->where('jenis_transaksi', 'Pemakaian')->whereYear('tgl_transaksi', $tahun)->get();
-        
+
         return response()->json([
             'status' => true,
             'data' => $pemakaian->sum('jumlah'),

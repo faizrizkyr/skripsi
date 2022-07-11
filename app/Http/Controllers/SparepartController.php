@@ -51,7 +51,7 @@ class SparepartController extends Controller
 
         Sparepart::create($validatedData);
 
-        return redirect('/admin/sparepart')->with('success', 'Data Bahan Baku di berhasil tambah.');
+        return redirect('/admin/sparepart')->with('success', 'Data Spare Part di berhasil tambah.');
     }
 
     /**
@@ -104,22 +104,14 @@ class SparepartController extends Controller
         return redirect('/admin/sparepart')->with('success', 'Data berhasil di-update.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Sparepart $sparepart)
     {
         Sparepart::destroy($sparepart->id);
-
-        return redirect('/admin/sparepart')->with('success', 'Post has been deleted.');
+        return redirect('/admin/sparepart')->with('success', 'Sparepart has been deleted.');
     }
 
     public function createBahanbaku(Request $request, Sparepart $sparepart)
     {
-        
         return view('admin.sparepart.bahanbaku.create', [
             'sparepart' => $sparepart,
             'bahanbaku' => Bahanbaku::pluck('nama', 'id')
@@ -132,12 +124,12 @@ class SparepartController extends Controller
             'bahanbaku_id' => 'required',
             'jumlah' => 'required'
         ]);
-        
+
         $bahanbakusparepart = BahanbakuSparepart::create([
             'sparepart_id' => $sparepart->id,
             'bahanbaku_id' => $request->bahanbaku_id,
             'jumlah' => $request->jumlah
-        ]) ;
+        ]);
 
         return redirect('/admin/sparepart/' . $sparepart->id)->with('success', 'Data Bahan Baku di berhasil tambah.');
     }
@@ -151,8 +143,6 @@ class SparepartController extends Controller
             'bahanbaku' => Bahanbaku::pluck('nama', 'id'),
             'bahanbakusparepart' => $bahanbakusparepart
         ]);
-
-
     }
 
     public function updateBahanbaku(Request $request, Sparepart $sparepart, Bahanbaku $bahanbaku)
@@ -164,7 +154,7 @@ class SparepartController extends Controller
             'jumlah' => 'required'
         ]);
 
-        $bahanbakusparepart->bahanbaku_id = $request->bahanbaku_id; 
+        $bahanbakusparepart->bahanbaku_id = $request->bahanbaku_id;
         $bahanbakusparepart->jumlah = $request->jumlah;
         $bahanbakusparepart->save();
 
