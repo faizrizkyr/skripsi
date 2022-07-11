@@ -19,8 +19,8 @@
         @endif
 
         <main class="form-signin w-100 m-auto">
-            <img class="mb-4" src="{{ asset('') }}file/logo NH.png" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal text-center">Selamat Datang di Sistem Informasi Inventory UD. NH JAYA</h1>
+            <img class="mb-4 align-content-center" src="{{ asset('') }}file/logo NH.png" alt="" width="200" height="200">
+            <h1 class="h4 mb-3 fw-normal text-center">Selamat Datang di Sistem Informasi Inventory UD. NH JAYA</h1>
             <form action="/login" method="post">
                 @csrf
 
