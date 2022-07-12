@@ -18,12 +18,11 @@
         </div>
         @endif
 
-        <main class="form-signin w-100 m-auto">
-            <img class="mb-4 align-content-center" src="{{ asset('') }}file/logo NH.png" alt="" width="200" height="200">
-            <h1 class="h4 mb-3 fw-normal text-center">Selamat Datang di Sistem Informasi Inventory UD. NH JAYA</h1>
+        <main class="form-signin w-100 m-auto text-center">
+            <img class="mb-4 align-content-center" src="{{ asset('file/logo NH.png') }}" alt="" width="200" height="200">
+            <h1 class="h4 mb-3 fw-normal">Selamat Datang di Sistem Informasi Inventory UD. NH JAYA</h1>
             <form action="/login" method="post">
                 @csrf
-
                 <div class="form-floating">
                     <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
                     <label for="email">Alamat Email</label>

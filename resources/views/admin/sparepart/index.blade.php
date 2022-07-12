@@ -34,8 +34,8 @@
         <td>{{ $sparepart->kategori->nama ?? '-' }}</td>
         <td>{{ $sparepart->deskripsi }}</td>
         <td>
-          @if(auth()->user()->role == 'superadmin')
           <a href="/admin/sparepart/{{ $sparepart->id }}" class="badge bg-info"><span data-feather="eye"></span></a>
+          @if(auth()->user()->role == 'superadmin')
           <a href="/admin/sparepart/{{ $sparepart->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
           <form action="/admin/sparepart/{{ $sparepart->id }}" method="post" class="d-inline">
             @method('delete')

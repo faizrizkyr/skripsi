@@ -8,6 +8,8 @@
                 <h1 class="mb-3 fs-3">Data Bahan Baku {{ $bahanbaku->nama }}</h1>
 
                 <a href="/admin/bahanbaku" class="btn btn-primary"><span data-feather="arrow-left"></span> Kembali ke Data Bahan Baku</a>
+
+                @if(auth()->user()->role == 'superadmin')
                 <a href="/admin/bahanbaku/{{ $bahanbaku->id }}/edit" class="btn btn-warning"><span data-feather="edit"></span>
                     Edit Data Bahan Baku</a>
                 <form action="/admin/bahanbaku/{{ $bahanbaku->id }}" method="post" class="d-inline">
@@ -16,6 +18,7 @@
                     <button class="btn btn-danger" onclick="return confirm('Are You Sure?')"><span
                             data-feather="trash-2"></span> Hapus Data Bahan Baku</button>
                 </form>
+                @endif
 
                 <table class="table table-dark table-bordered table-striped table-sm mt-3">
                     <thead>
