@@ -45,9 +45,18 @@ class EoqController extends Controller
         $second = $first/$hC;
         $eoq = round(sqrt($second));
 
-        $frekuensi = round($d/$eoq);
+        if ($eoq != 0) {
+            $frekuensi = round($d/$eoq);
+        } else {
+            $frekuensi = 0;
+        }
+        if ($frekuensi != 0) {
+            $T = round(269/$frekuensi);
+        } else {
+            $T = 0;
 
-        $T = round(269/$frekuensi);
+        }
+
         $tgl_awal = date('d F Y', strtotime("$request->tahun-1-1") );
         $interval[0] = $tgl_awal;
         // $tgl_awal = date('d F Y', strtotime($tgl_awal . " +$T days"));
