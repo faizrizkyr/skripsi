@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Data Pemakaian Bahan Baku UD. NH Jaya</h1>
     </div>
-    
+
     @if (session()->has('success'))
         <div class="alert alert-success col-lg-9" role="alert">
           {{ session('success') }}
@@ -33,7 +33,7 @@
                 <td>{{ $pemakaian->jumlah }}</td>
                 <td>{{ $pemakaian->tgl_pemakaian }}</td>
                 <td>
-                    <a href="/admin/pemakaian/{{ $pemakaian->id }}" class="badge bg-info"><span data-feather="eye"></span></a>
+                    {{-- <a href="/admin/pemakaian/{{ $pemakaian->id }}" class="badge bg-info"><span data-feather="eye"></span></a> --}}
                     <a href="/admin/pemakaian/{{ $pemakaian->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                     <form action="/admin/pemakaian/{{ $pemakaian->id }}" method="post" class="d-inline">
                     @method('delete')
@@ -42,7 +42,7 @@
                     </form>
                 </td>
               </tr>
-                  
+
               @endforeach
           </tbody>
         </table>
