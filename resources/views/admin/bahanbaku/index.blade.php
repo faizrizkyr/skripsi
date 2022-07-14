@@ -22,10 +22,10 @@
                 <tr>
                     {{-- <th scope="col">No.</th> --}}
                     <th scope="col">Nama</th>
-                    <th scope="col">Deskripsi</th>
+                    {{-- <th scope="col">Deskripsi</th> --}}
                     <th scope="col">Harga satuan</th>
                     <th scope="col">Stok</th>
-                    <th scope="col">Stok Minimal</th>
+                    {{-- <th scope="col">Stok Minimal</th> --}}
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -34,10 +34,10 @@
                     <tr>
                         {{-- <td>{{ $loop->iteration }}</td> --}}
                         <td>{{ $bahanbaku->nama }}</td>
-                        <td>{{ $bahanbaku->deskripsi }}</td>
+                        {{-- <td>{{ $bahanbaku->deskripsi }}</td> --}}
                         <td>{{ $bahanbaku->harga }}</td>
                         <td>{{ $bahanbaku->stok }}</td>
-                        <td>{{ $bahanbaku->min_stok }}</td>
+                        {{-- <td>{{ $bahanbaku->min_stok }}</td> --}}
                         <td>
                             <a href="/admin/bahanbaku/{{ $bahanbaku->id }}" class="badge bg-info"><span
                                     data-feather="eye"></span></a>
