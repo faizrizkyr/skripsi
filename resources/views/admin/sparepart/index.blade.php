@@ -13,15 +13,15 @@
 
 <div class="table-responsive col-lg-10">
   @if(auth()->user()->role == 'superadmin')
-  <a href="/admin/sparepart/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Bahan Baku Baru</a>
+  <a href="/admin/sparepart/create" class="btn btn-primary mb-3"><span data-feather="file-plus"></span> Tambah Data Sparepart Baru</a>
   @endif
   <table class="table table-striped table-sm dataTable">
     <thead>
       <tr>
-        <th scope="col">No.</th>
-        <th scope="col">Nama</th>
+        {{-- <th scope="col">No.</th> --}}
         <th scope="col">Kategori</th>
-        <th scope="col">Deskripsi</th>
+        <th scope="col">Nama</th>
+        {{-- <th scope="col">Deskripsi</th> --}}
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -29,10 +29,10 @@
       @foreach ($spareparts as $sparepart)
 
       <tr>
-        <td>{{ $loop->iteration }}</td>
-        <td>{{ $sparepart->nama }}</td>
+        {{-- <td>{{ $loop->iteration }}</td> --}}
         <td>{{ $sparepart->kategori->nama ?? '-' }}</td>
-        <td>{{ $sparepart->deskripsi }}</td>
+        <td>{{ $sparepart->nama }}</td>
+        {{-- <td>{{ $sparepart->deskripsi }}</td> --}}
         <td>
           <a href="/admin/sparepart/{{ $sparepart->id }}" class="badge bg-info"><span data-feather="eye"></span></a>
           @if(auth()->user()->role == 'superadmin')
