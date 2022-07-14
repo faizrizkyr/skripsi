@@ -7,7 +7,7 @@
 
     <div class="col-lg-8">
         <form method="post" action="/admin/eoq/hitung" class="mb-5" enctype="multipart/form-data">
-            
+
             @csrf
 
             <div class="mb-3">
@@ -44,8 +44,8 @@
             </div>
 
 
-            
-            <button type="button" class="btn btn-primary mt-3" id="btnHitungJumlahKebutuhan"><span data-feather="edit"></span> Hitung Jumlah Rekomendasi Kebutuhan</button><span> * rekomendasi berdasarkan data tahun sebelumnya</span>
+
+            <button type="button" class="btn btn-primary mt-3" id="btnHitungJumlahKebutuhan"><span data-feather="edit"></span> Hitung Jumlah Rekomendasi Kebutuhan</button><span> * rekomendasi berdasarkan data pemakaian 1 tahun/12 bulan sebelumnya</span>
 
             <div class="mb-3">
                 {!! Form::label('jml_kebutuhan', 'Jumlah Kebutuhan', ['class' => 'form-label']) !!}
