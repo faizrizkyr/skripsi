@@ -27,16 +27,16 @@
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Harga satuan</th>
                             <th scope="col">Stok</th>
-                            <th scope="col">Stok Minimal</th>
+                            {{-- <th scope="col">Stok Minimal</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{ $bahanbaku->nama }}</td>
                             <td>{{ $bahanbaku->deskripsi }}</td>
-                            <td>{{ $bahanbaku->harga }}</td>
+                            <td>Rp {{ $bahanbaku->harga }}</td>
                             <td>{{ $bahanbaku->stok }}</td>
-                            <td>{{ $bahanbaku->min_stok }}</td>
+                            {{-- <td>{{ $bahanbaku->min_stok }}</td> --}}
                         </tr>
                     </tbody>
                 </table>
@@ -44,7 +44,7 @@
             </div>
         </div>
         @if ($eoq != null)
-            
+
         <div class="row my-3">
             <h3>Perhitungan EOQ {{ $bahanbaku->nama }}</h3>
             <div class="col-lg-8">
