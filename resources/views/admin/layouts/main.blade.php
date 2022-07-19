@@ -6,7 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Kayruchenkov">
     <meta name="generator" content="Hugo 0.98.0">
-    <title>UD. NH JAYA | Dashboard</title>
+
+    {{-- <title>UD. NH JAYA | {{ Request::is('/') ? 'Dashboard' :
+        (Request::is('admin/bahanbaku*') ? 'Bahan Baku' :
+        (Request::is('admin/sparepart*') ? 'Sparepart' :
+        (Request::is('admin/kategori*') ? 'Kategori' :
+        (Request::is('admin/pemesanan*') ? 'Pemesanan' :
+        (Request::is('admin/pemakaian*') ? 'Pemakaian' :
+        (Request::is('admin/transaksi*') ? 'Transaksi' :
+        (Request::is('admin/eoq*') ? 'Economic Order Quantity' :
+        (Request::is('admin/user*') ? 'Users' :
+        ''))))))))  }}</title> --}}
+
+    <title>UD. NH Jaya | {{ ucwords(str_replace('_', ' ', explode('.', Request::route()->getName())[0])) }}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
     {{-- Bootstrap core CSS --}}
@@ -67,7 +79,7 @@
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>

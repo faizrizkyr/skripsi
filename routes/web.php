@@ -35,20 +35,20 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/',  [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/',  [DashboardController::class, 'index'])->middleware('auth')->name("Dashboard");
 
-Route::resource('/admin/bahanbaku', BahanbakuController::class)->middleware('auth');
+Route::resource('/admin/bahanbaku', BahanbakuController::class, ['names' => 'bahan_baku'])->middleware('auth');
 Route::resource('/admin/sparepart', SparepartController::class)->middleware('auth');
 Route::resource('/admin/kategori', KategoriController::class)->middleware('auth');
 Route::resource('/admin/pemesanan', PemesananController::class)->middleware('auth');
 Route::resource('/admin/pemakaian', PemakaianController::class)->middleware('auth');
 Route::resource('/admin/user', UserController::class)->middleware('auth');
 
-Route::resource('/admin/eoq', EoqController::class)->middleware('auth');
+Route::resource('/admin/eoq', EoqController::class, ['names' => 'economic_order_quantity'])->middleware('auth');
 
 Route::post('/admin/eoq/hitung', [EoqController::class, 'hitung']   )->middleware('auth');
 
-Route::get('/admin/transaksi',  [TransaksiController::class, 'index'])->middleware('auth');
+Route::get('/admin/transaksi',  [TransaksiController::class, 'index'])->middleware('auth')->name("Transaksi");
 Route::get('/admin/bahanbaku/{bahanbaku}/holding-cost',[BahanbakuController::class, 'holding_cost'])->middleware('auth');
 Route::get('/admin/bahanbaku/{bahanbaku}/jumlah-kebutuhan',[BahanbakuController::class, 'jumlah_kebutuhan'])->middleware('auth');
 
