@@ -34,27 +34,27 @@
                         </tr>
                         <tr>
                             <td>Biaya Penyimpanan</td>
-                            <td>{{ $holding_cost }}</td>
+                            <td>Rp {{ $holding_cost }}</td>
                         </tr>
                         <tr>
                             <td>Biaya Pemesanan</td>
-                            <td>{{ $biaya_order }}</td>
+                            <td>Rp {{ $biaya_order }}</td>
                         </tr>
                         <tr>
                             <td>Jumlah kebutuhan selama 1 periode</td>
-                            <td>{{ $jml_kebutuhan }}</td>
+                            <td>{{ $jml_kebutuhan }} unit</td>
                         </tr>
                         <tr>
                             <td>Jumlah pemesanan optimal (EOQ)</td>
-                            <td>{{ $eoq }}</td>
+                            <td>{{ $eoq }} unit</td>
                         </tr>
                         <tr>
                             <td>Frekuensi pemesanan selama 1 periode</td>
-                            <td>{{ $frekuensi }}</td>
+                            <td>{{ $frekuensi }} kali</td>
                         </tr>
                         <tr>
                             <td>Interval Pemesanan</td>
-                            <td>{{ $interval }}</td>
+                            <td>Setiap {{ $interval }} hari</td>
                         </tr>
                     </tbody>
                 </table>
