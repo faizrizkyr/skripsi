@@ -1,5 +1,7 @@
 @extends('admin.layouts.main')
 
+
+
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Data Bahan Baku UD. NH Jaya</h1>
@@ -35,7 +37,7 @@
                         {{-- <td>{{ $loop->iteration }}</td> --}}
                         <td>{{ $bahanbaku->nama }}</td>
                         {{-- <td>{{ $bahanbaku->deskripsi }}</td> --}}
-                        <td>{{ $bahanbaku->harga }}</td>
+                        <td>Rp {{ $bahanbaku->harga }}</td>
                         <td>{{ $bahanbaku->stok }}</td>
                         {{-- <td>{{ $bahanbaku->min_stok }}</td> --}}
                         <td>
