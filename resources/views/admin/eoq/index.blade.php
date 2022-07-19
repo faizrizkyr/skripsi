@@ -45,11 +45,11 @@
 
 
 
-            <button type="button" class="btn btn-primary mt-3" id="btnHitungJumlahKebutuhan"><span data-feather="edit"></span> Hitung Jumlah Rekomendasi Kebutuhan</button><span> * rekomendasi berdasarkan data pemakaian 1 tahun/12 bulan sebelumnya</span>
-
-            <div class="mb-3">
+            <button type="button" class="btn btn-primary mt-3" id="btnHitungJumlahKebutuhan"><span data-feather="edit"></span> Hitung Jumlah Rekomendasi Kebutuhan</button> <br><span> * rekomendasi berdasarkan data pemakaian 1 tahun/12 bulan sebelumnya</span>
+            <br>
+            <div class="mt-3 mb-3">
                 {!! Form::label('jml_kebutuhan', 'Jumlah Kebutuhan', ['class' => 'form-label']) !!}
-                {!! Form::number('jml_kebutuhan', old('jml_kebutuhan'), ['class' => 'form-control', 'required']) !!}
+                {!! Form::number('jml_kebutuhan', old('jml_kebutuhan'), ['class' => 'form-control', 'placeholder' => 'Jumlah kebutuhan Bahan Baku dalam satu Periode', 'required']) !!}
 
                 @error('jml_kebutuhan')
                     <div class="invalid-feedback">
